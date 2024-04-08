@@ -38,10 +38,24 @@ public extension CollectionViewCellRegistrable where Self: Nibbbable {
 
 public protocol Nibbbable: Identifiable {
     static func nib() -> UINib
+    static func newFromNib() -> Self
+    static func newFromNib(bundle: Bundle?) -> Self
 }
 
 public extension Nibbbable {
     static func nib() -> UINib {
         UINib(nibName: String(describing: self), bundle: nil)
     }
+    
+    static func newFromNib() -> Self {
+        return self.newFromNib(bundle: nil)
+    }
 }
+
+public extension Nibbbable where Self: UIView {
+    static func newFromNib(bundle: Bundle?) -> Self {
+        // swiftlint:disable:next force_cast
+        return self.nib().instantiate(withOwner: self, options: nil).first as! Self
+    }
+}
+
