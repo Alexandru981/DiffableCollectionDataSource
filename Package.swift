@@ -13,10 +13,6 @@ let package = Package(
             name: "DiffableCollectionDataSource",
             targets: ["DiffableCollectionDataSource"]
         ),
-        .executable(
-            name: "DiffableCollectionDataSourceClient",
-            targets: ["DiffableCollectionDataSourceClient"]
-        ),
     ],
     dependencies: [
         // Depend on the Swift 5.9 release of SwiftSyntax
